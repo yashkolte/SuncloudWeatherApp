@@ -13,15 +13,13 @@
 <body>
   <header class="p-3">
     <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src="../images/drizzle.png" width="40" height="32" alt="">
-          <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        
+        <a href="/" class="d-flex align-items-baseline justify-content-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <!-- <img src="../images/drizzle.png" width="40" height="32" alt=""> -->
+          <i class="bi bi-cloud-sun text-dark fs-2"></i>
+          <h2 href="/" class=" px-2 text-black fw-bold fs-4">SunCloud</h2>
         </a>
-
-        <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" class="nav-link px-2 text-black fw-bold ">SunCloud</a></li>
-        </ul>
 
         <form action="/weather" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex gap-2"
           role="search">
@@ -57,7 +55,7 @@
           <div class="d-flex align-items-baseline">
 
             <% if(temp !==null){ %>
-              <h3 class="display-3 fw-medium">
+              <h3 id="mob-temp" class="display-3 fw-medium">
                 <%= temp %>°
               </h3>
               <% } %>
@@ -98,7 +96,7 @@
       </div>
       <div class="col-12 col-lg-6 d-flex flex-wrap">
         <div class="row col-12">
-          <div class="col-12 col-lg-6 bg-body-tertiary">
+          <div class="col-12 col-lg-6">
             <div class="card mb-2 mt-4" style="border-radius: 25px;">
               <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center">
@@ -225,7 +223,7 @@
         <div class="row col-12">
           <div class="col-12">
             <div class="card my-2 " style="border-radius: 25px;">
-              <div class="card-body d-flex justify-content-between p-4">
+              <div class="card-body d-flex justify-content-between px-4">
                 <div class="d-flex flex-column justify-content-between align-items-center">
                   <div class="d-flex flex-column justify-content-between align-items-start">
                     <div class="my-2">
