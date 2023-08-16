@@ -58,11 +58,11 @@ router.post("/weather", function (req, res) {
         });
       } else {
         let city_name = `${weather.name}`;
-        let feels_like = `${weather.main.feels_like}`;
+        let feels_like = `${Math.trunc([(weather.main.feels_like - 32) * 5] / 9)}`;
         let temp_min = `${Math.trunc([(weather.main.temp_min - 32) * 5] / 9)}`;
         let temp_max = `${Math.trunc([(weather.main.temp_max - 32) * 5] / 9)}`;
         let pressure = `${weather.main.pressure}`;
-        let visibility = `${weather.visibility}`;
+        let visibility = `${weather.visibility /1000}`;
         let temp = `${Math.trunc([(weather.main.temp - 32) * 5] / 9)}`;
 
         let humidity = `${weather.main.humidity}`;
@@ -84,9 +84,11 @@ router.post("/weather", function (req, res) {
 
         var snst = new Date(sunset * 1000);
         var sunsettime = snst.toUTCString();
+        sunsettime = sunsettime.slice(17, 25);
 
         var snre = new Date(sunrise * 1000);
         var sunrisetime = snre.toUTCString();
+        sunrisetime = sunrisetime.slice(17, 25)
 
         res.render("suncloud", {
           city_name: city_name,

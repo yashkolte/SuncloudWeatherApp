@@ -23,7 +23,7 @@
 
         <form action="/weather" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex gap-2"
           role="search">
-          <input name="city" type="search" class="form-control form-control-dark text-dark" placeholder="Search..."
+          <input name="city" type="search" class="form-control form-control-dark text-dark" placeholder="Search by Location..."
             aria-label="Search">
 
           <div class="text-end">
@@ -106,7 +106,7 @@
                   <div>
                     <h4 class="text-end"><strong>
                         <% if(feels_like !==null){ %>
-                          <%= feels_like %>
+                          <%= feels_like %>°
                             <% } %>
                       </strong></h4>
                     <p class="text-muted mb-0">Feels Like</p>
@@ -125,10 +125,10 @@
                   <div>
                     <h4 class="text-end"><strong>
                         <% if(wind_speed !==null){ %>
-                          <%= wind_speed %>
+                          <%= wind_speed %> km/h
                             <% } %>
                       </strong></h4>
-                    <p class="text-muted mb-0">WSW Wind</p>
+                    <p class="text-muted text-end mb-0">WSW Wind</p>
                   </div>
                 </div>
               </div>
@@ -149,10 +149,10 @@
                   <div>
                     <h4 class="text-end"><strong>
                         <% if(humidity !==null){ %>
-                          <%= humidity %>
+                          <%= humidity %> %
                             <% } %>
                       </strong></h4>
-                    <p class="text-muted mb-0">Humidity</p>
+                    <p class="text-muted text-end mb-0">Humidity</p>
                   </div>
                 </div>
               </div>
@@ -168,10 +168,10 @@
                   <div>
                     <h4 class="text-end"><strong>
                         <% if(visibility !==null){ %>
-                          <%= visibility %>
+                          <%= visibility %> km
                             <% } %>
                       </strong></h4>
-                    <p class="text-muted mb-0">Visibility</p>
+                    <p class="text-muted text-end mb-0">Visibility</p>
                   </div>
                 </div>
               </div>
@@ -190,10 +190,10 @@
                   <div>
                     <h4 class="text-end"><strong>
                         <% if(pressure !==null){ %>
-                          <%= pressure %>
+                          <%= pressure %> hPa
                             <% } %>
                       </strong></h4>
-                    <p class="text-muted mb-0">Air Pressure</p>
+                    <p class="text-muted text-end mb-0">Air Pressure</p>
                   </div>
                 </div>
               </div>
