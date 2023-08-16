@@ -1,254 +1,35 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Weather</title>
-  <link rel="shortcut icon" href="../images/drizzle.png" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <title>Weather</title>
+    <link rel="shortcut icon" href="../images/drizzle.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
 </head>
-
 <body>
-  <header class="p-3 text-bg-dark">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src="../images/drizzle.png" width="40" height="32" alt="">
-          <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg> -->
-        </a>
-
-        <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">SunCloud</a></li>
-        </ul>
-
-        <form action="/weather" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex gap-2"
-          role="search">
-          <input name="city" type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-            aria-label="Search">
-
-          <div class="text-end">
-            <button type="submit" class="btn btn-outline-light me-2">Search</button>
-
+    <div class="overlay align-items-center">
+      <div class="blur z-0"></div>
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center p-5 gap-3 z-2">
+          <div class="d-flex gap-2">
+            <img src="../images/drizzle.png" width="40" height="32" alt="">
+            <h3 class="text-center 6 text-white">SunCloud</h3>
+  
           </div>
-        </form>
+          <p class="text-center text-white"> A simple and elegant weather app that shows you the current temperature, humidity, wind
+            speed, and cloud cover for any location in the world.</p>
+        </div>
+        <div class="col-12 col-lg-6 p-5 d-flex align-items-center justify-content-center z-2">
+          <form action="/weather" method="post" class=" w-50 d-flex flex-column gap-2 justify-content-center"
+            role="search">
+            <input name="city" type="search" class="form-control" placeholder="Search" aria-label="Search" required>
+            <button type="submit" id="overlay-btn" class="btn btn-outline-light me-2">Search for weather</button>
+  
+          </form>
+        </div>
+  
       </div>
-    </div>
-  </header>
-
-  <div class="container">
-
-    <!-- <div class="test">
-      <form action="/forcast" method="post">
-        <input name="lat" type="text" value="<%= lat %>">
-        <input name="lon" type="text" value="<%= lon %>">
-        <input type="submit">
-    </div> -->
-
-    <div class="row">
-      <div class="col-12 col-lg-6">
-        <div class=" p-5">
-          <h1 class="">
-            <% if(city_name !==null){ %>
-              <%= city_name %>
-                <% } %>
-          </h1>
-
-          <img src="https://openweathermap.org/img/wn/<%=cloud_icon%>@2x.png" alt="">
-
-
-          <div class="d-flex align-items-baseline">
-
-            <% if(temp !==null){ %>
-              <h3 style="font-size: 4rem;">
-                <%= temp %>°
-              </h3>
-              <% } %>
-
-                <% if(cloud_description !==null){ %>
-                  <h3 style="font-size: 1.5rem;">
-                    <%= cloud_description %>
-                  </h3>
-                  <% } %>
-          </div>
-          <div class="d-flex gap-1">
-            <h5>High: <% if(temp_min !==null){ %>
-                <%= temp_min %>°
-                  <% } %>
-            </h5>
-            <h5>Low: <% if(temp_max !==null){ %>
-                <%= temp_max %>°
-                  <% } %>
-            </h5>
-
-          </div>
-
-          <div class="align-self-baseline mt-4">
-            <% if(date !==null){ %>
-              <h3>
-                <%= date %>
-              </h3>
-              <% } %>
-
-                <% if(error !==null){ %>
-                  <p>
-                    <%= error %>
-                  </p>
-                  <% } %>
-          </div>
-
-        </div>
-      </div>
-      <div class="col-12 col-lg-6 d-flex flex-wrap">
-        <div class="card mb-2 mt-4 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-thermometer-half" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h4 class="text-end"><strong>
-                    <% if(feels_like !==null){ %>
-                        <%= feels_like %>
-                      <% } %>
-                  </strong></h4>
-                  <p class="text-muted mb-0">Feels Like</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-2 mt-4 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-wind" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h4 class="text-end"><strong>
-                    <% if(wind_speed !==null){ %>
-                        <%= wind_speed %>
-                      <% } %>
-                  </strong></h4>
-                  <p class="text-muted mb-0">WSW Wind</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-2 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-moisture" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h4 class="text-end"><strong>
-                    <% if(humidity !==null){ %>
-                        <%= humidity %>
-                      <% } %>
-                  </strong></h4>
-                  <p class="text-muted mb-0">Humidity</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-2 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-cloud-haze2" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h4 class="text-end"><strong>
-                    <% if(visibility !==null){ %>
-                        <%= visibility %>
-                      <% } %>
-                  </strong></h4>
-                  <p class="text-muted mb-0">Visibility</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-2 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-speedometer2" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h4 class="text-end"><strong>
-                    <% if(pressure !==null){ %>
-                        <%= pressure %>
-                      <% } %>
-                  </strong></h4>
-                  <p class="text-muted mb-0">Air Pressure</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-2 mx-4" style="border-radius: 25px; width: 40%">
-          <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <i class="bi bi-cloud" style="font-size: 50px;"></i>
-              </div>
-              <div>
-                <h5 class="text-end"><strong>
-                    <% if(cloud_description !==null){ %>
-                        <%= cloud_description %>
-                      <% } %>
-                  </strong></h5>
-                  <p class="text-muted mb-0 text-end">Clouds</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card my-2 mx-4" style="border-radius: 25px; width: 87%">
-          <div class="card-body d-flex justify-content-between p-4">
-            <div class="d-flex flex-column justify-content-between align-items-center">
-              <div class="d-flex flex-column justify-content-between align-items-start">
-              <div class="my-2">
-                <i class="bi bi-sunrise" style="font-size: 50px;"></i>
-              </div>
-                <p class="text-muted mb-0">Sun Rise</p>
-                
-                <p class="text-start">
-                <% if(sunrisetime !==null){ %>
-                      <%= sunrisetime %>
-                    <% } %>
-                  </p>
-              </div>
-            </div>
-            <div class="d-flex flex-column justify-content-between align-items-center">
-              <div class="d-flex flex-column justify-content-center align-items-end">
-              <div class="my-2">
-                <i class="bi bi-sunset" style="font-size: 50px;"></i>
-              </div>
-                <p class="text-muted mb-0">Sun Set</p>
-                <p class="text-end">
-                  <% if(sunsettime !==null){ %>
-                        <%= sunsettime %>
-                      <% } %>
-                    </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
 </body>
-
 </html>

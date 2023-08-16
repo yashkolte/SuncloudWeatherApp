@@ -4,9 +4,13 @@ var request = require("request");
 
 const apiKey = "7c4bb4a0091ed04b260de4ee9e7433f7";
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", {
+  res.render("index");
+});
+
+/* GET home page. */
+router.get("/suncloud", function (req, res, next) {
+  res.render("suncloud", {
     weather: null,
     city_name: null,
     feels_like: null,
@@ -84,7 +88,7 @@ router.post("/weather", function (req, res) {
         var snre = new Date(sunrise * 1000);
         var sunrisetime = snre.toUTCString();
 
-        res.render("index", {
+        res.render("suncloud", {
           city_name: city_name,
           feels_like: feels_like,
           temp_min: temp_min,
@@ -115,6 +119,8 @@ router.post("/weather", function (req, res) {
     }
   });
 });
+
+
 
 // router.post("/forcast", function (req, res) {
 //   let lat = req.body.lat;
